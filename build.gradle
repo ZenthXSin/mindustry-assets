@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.github.modvalidator'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// All Mindustry core assets are in src/main/resources/
+// They are packaged into the jar root, accessible via Core.files.internal()
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}
